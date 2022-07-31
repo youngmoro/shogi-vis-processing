@@ -4,7 +4,7 @@ class PieceData{
   PieceData() {
     for(int i=1; i<=yokoL; i++){
       for(int j=1; j<=tateL; j++){
-          String name = "";
+          String name;
           int reverse = 0;
           int player = 0;
           if(j==3 || j==7) name = "歩";

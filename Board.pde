@@ -24,8 +24,8 @@ class Board {
      for(int i = 0; i < yokoL; i++){
       for(int j = 0; j < tateL; j++){
         push();
-          setDefaultLayout(i, j);
-          setCustomLayout(data[i][j].reverse, data[i][j].player);
+          setText(i, j);
+          reflectOptions(data[i][j].reverse, data[i][j].player);
           if(data[i][j].reverse == 1) data[i][j].name = p.reverseName(data[i][j].name);
           text(data[i][j].name, 0, 0);
         pop();
@@ -33,7 +33,7 @@ class Board {
      }
   }
   
-  void setDefaultLayout(int yoko, int tate) {
+  void setText(int yoko, int tate) {
     fill(255);
     textAlign(CENTER,TOP);
     float textHeight = textAscent() + textDescent();
@@ -42,7 +42,7 @@ class Board {
     translate(0, 0, 1);
   }
   
-  void setCustomLayout(int reverse, int player){
+  void reflectOptions(int reverse, int player){
     if(reverse == 1) fill(255, 105, 180);
     if(player == 0) {
       translate(0, 73);
