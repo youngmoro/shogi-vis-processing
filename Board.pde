@@ -2,7 +2,7 @@ class Board {
   int tateSize = 150;
   int yokoSize = 122;
   PieceData pd = new PieceData();
-  
+  Piece p = new Piece("", 0, 0); // for method
   Board() {
   }
   
@@ -24,28 +24,31 @@ class Board {
      for(int i = 0; i < yokoL; i++){
       for(int j = 0; j < tateL; j++){
         push();
-          setPieceLayout(i, j);
-          setPlayerLayout(data[i][j].player);
-          if(data[i][j].reverse == 1){
-            //text(成り, 0, 0);
-          }else{
-            text(data[i][j].name, 0, 0);
-          }
+          setDefaultLayout(i, j);
+          setCustomLayout(data[i][j].reverse, data[i][j].player);
+          if(data[i][j].reverse == 1) data[i][j].name = p.reverseName(data[i][j].name);
+          text(data[i][j].name, 0, 0);
         pop();
       }
      }
   }
   
-  void setPieceLayout(int yoko, int tate) {
+  void setDefaultLayout(int yoko, int tate) {
+    fill(255);
     textAlign(CENTER,TOP);
     float textHeight = textAscent() + textDescent();
     int textPosY = int(tateSize-textHeight)/2;
-    fill(255);
     translate(yoko * yokoSize + yokoSize/2, tate * tateSize + textPosY, 1);
     translate(0, 0, 1);
   }
   
-  void setPlayerLayout(int player){
+  void setCustomLayout(int reverse, int player){
+    if(reverse == 1){ 
+      textSize(tateSize/3);
+      fill(255, 105, 180);
+      if(player == 0) translate(0, 20);
+      else translate(0, -20);
+    }
     if(player == 0){
       translate(0, 73);
       rotateZ(PI);
