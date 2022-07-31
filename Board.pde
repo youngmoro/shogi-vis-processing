@@ -13,19 +13,19 @@ class Board {
   
   void drawEmpty() {
     fill(0);
-    for(int i = 0; i < tateL; i++){
-      for(int j = 0; j < yokoL; j++){
-        rect(j * yokoSize, i * tateSize, yokoSize, tateSize);
+    for(int i = 0; i < yokoL; i++){
+      for(int j = 0; j < tateL; j++){
+        rect(i * yokoSize, j * tateSize, yokoSize, tateSize);
       }
     }
   }
   
   void drawPieces(Piece[][] data) {
-     for(int i = 0; i < tateL; i++){
-      for(int j = 0; j < yokoL; j++){
+     for(int i = 0; i < yokoL; i++){
+      for(int j = 0; j < tateL; j++){
         push();
-          setPieceInfo(i, j);
-          setPlayerInfo(data[i][j].player);
+          setPieceLayout(i, j);
+          setPlayerLayout(data[i][j].player);
           if(data[i][j].reverse == 1){
             //text(成り, 0, 0);
           }else{
@@ -36,7 +36,7 @@ class Board {
      }
   }
   
-  void setPieceInfo(int tate, int yoko) {
+  void setPieceLayout(int yoko, int tate) {
     textAlign(CENTER,TOP);
     float textHeight = textAscent() + textDescent();
     int textPosY = int(tateSize-textHeight)/2;
@@ -45,7 +45,7 @@ class Board {
     translate(0, 0, 1);
   }
   
-  void setPlayerInfo(int player){
+  void setPlayerLayout(int player){
     if(player == 0){
       translate(0, 73);
       rotateZ(PI);
