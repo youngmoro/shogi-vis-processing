@@ -1,6 +1,7 @@
 import peasy.*;
 PeasyCam cam;
 Board board;
+LoadData ld;
 int tateL = 9;
 int yokoL = 9;
 
