@@ -1,12 +1,14 @@
+//全てのマスに駒の情報を登録するクラス
 class GameData{
-  Piece[][] table = new Piece[yokoL][tateL]; //0-8, 0-8
+  Piece[][] table;
   
   GameData() {
+    table = new Piece[yokoL][tateL]; //0-8, 0-8
     initialize();
   }
   
   void initialize() {
-        for(int i=1; i<=yokoL; i++){
+    for(int i=1; i<=yokoL; i++){
       for(int j=1; j<=tateL; j++){
           String name;
           int reverse = 0;
@@ -31,6 +33,7 @@ class GameData{
   void setPiece(int i, int j, Piece piece) {
     i = 9-i;
     j = j-1;
+    if(piece.reverse == 1) piece.name = piece.reverseName(piece.name);
     table[i][j] = piece;
   }
 }

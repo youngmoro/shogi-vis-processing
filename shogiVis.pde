@@ -1,6 +1,7 @@
 import peasy.*;
 PeasyCam cam;
 Board board;
+GameData gd;
 LoadData ld;
 int tateL = 9;
 int yokoL = 9;
@@ -9,6 +10,7 @@ void setup(){
   size(800, 800, P3D);
   board = new Board();
   ld = new LoadData();
+  gd = new GameData();
   int textSize = board.tateSize/2;
   PFont font = createFont("HiraginoSans-W1", textSize);
   textFont(font);
@@ -25,7 +27,7 @@ void draw(){
     translate(board.yokoSize*-9/2, board.tateSize*-9/2, 1000);
     for(int i = 0; i < 10; i++){
       translate(0, 0, -100);
-      board.draw();
+      board.draw(gd.table);
     }
   pop();
 }

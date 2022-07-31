@@ -1,14 +1,14 @@
+//１局面のデータを渡され、描画するクラス
 class Board {
   int tateSize = 150;
   int yokoSize = 122;
-  GameData gd = new GameData();
-  Piece p = new Piece("", 0, 0); // for method
+  
   Board() {
   }
   
-  void draw() {
+  void draw(Piece[][] table) {
     drawEmpty();
-    drawPieces(gd.table);
+    drawPieces(table);
   }
   
   void drawEmpty() {
@@ -26,7 +26,6 @@ class Board {
         push();
           setText(i, j);
           reflectOptions(data[i][j].reverse, data[i][j].player);
-          if(data[i][j].reverse == 1) data[i][j].name = p.reverseName(data[i][j].name);
           text(data[i][j].name, 0, 0);
         pop();
       }

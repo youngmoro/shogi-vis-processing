@@ -1,26 +1,28 @@
+//kif形式のtxtファイルを読むクラス
 class LoadData{
-  String path = "sample.txt";
+  String path;
   String[] kifFile;
   int handsStart;
-  ArrayList<String> handsList = new ArrayList<String>();
-  ArrayList<String> curHandsList = new ArrayList<String>();
-  ArrayList<String> preHandsList = new ArrayList<String>();
+  int handsLength;
+  ArrayList<String> curHandList = new ArrayList<String>();
+  ArrayList<String> preHandList = new ArrayList<String>();
   
   LoadData() {
+    path = "sample.txt";
     kifFile = loadStrings(path);
     loadTxt();
+    handsLength = curHandList.size();
+    println("handsLength:" + handsLength);
   }
   
   void loadTxt() {
     for(int i=0; i<kifFile.length; i++) {
       if(kifFile[i].indexOf("手数")!=-1) handsStart=i+1;
     }
-    for(int i=handsStart; i<kifFile.length-handsStart; i++){
+    for(int i=handsStart; i<kifFile.length; i++){
       kifFile[i] = formatText(kifFile[i]);
-      handsList.add(kifFile[i]);
       separate(kifFile[i]);
-      //println(curHandsList.get(i-handsStart));
-      //println(preHandsList.get(i-handsStart));
+      println(curHandList.get(i-handsStart));
     }
   }
   
@@ -31,8 +33,13 @@ class LoadData{
   }
   
   void separate(String str){
-    //String[] newStr = str.split("(");
-    //curHandsList.add(newStr[0]);
-    //preHandsList.add(newStr[1]);
+    if(!str.contains("(")){
+      curHandList.add(str);
+      preHandList.add("99");
+    }else{
+      String[] newStr = str.split("\\(");
+      curHandList.add(newStr[0]);
+      preHandList.add(newStr[1].substring(0, newStr[1].length()-1));
+    }
   }
 }

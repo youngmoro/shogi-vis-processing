@@ -1,3 +1,4 @@
+//駒の情報をもつクラス
 class Piece {
   String name;
   int reverse; //通常0成り1
