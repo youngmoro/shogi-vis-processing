@@ -1,14 +1,14 @@
 class Board {
   int tateSize = 150;
   int yokoSize = 122;
-  PieceData pd = new PieceData();
+  GameData gd = new GameData();
   Piece p = new Piece("", 0, 0); // for method
   Board() {
   }
   
   void draw() {
     drawEmpty();
-    drawPieces(pd.table);
+    drawPieces(gd.table);
   }
   
   void drawEmpty() {

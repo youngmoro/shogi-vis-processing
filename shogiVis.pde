@@ -8,6 +8,7 @@ int yokoL = 9;
 void setup(){
   size(800, 800, P3D);
   board = new Board();
+  ld = new LoadData();
   int textSize = board.tateSize/2;
   PFont font = createFont("HiraginoSans-W1", textSize);
   textFont(font);

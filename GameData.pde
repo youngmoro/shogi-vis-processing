@@ -1,8 +1,12 @@
-class PieceData{
+class GameData{
   Piece[][] table = new Piece[yokoL][tateL]; //0-8, 0-8
   
-  PieceData() {
-    for(int i=1; i<=yokoL; i++){
+  GameData() {
+    initialize();
+  }
+  
+  void initialize() {
+        for(int i=1; i<=yokoL; i++){
       for(int j=1; j<=tateL; j++){
           String name;
           int reverse = 0;
