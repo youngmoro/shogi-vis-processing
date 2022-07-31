@@ -14,9 +14,9 @@ class Piece {
     if(name=="歩" || name=="と") nari = "と";
     else if(name=="角") nari = "馬";
     else if(name=="飛") nari = "龍";
-    else if(name=="香") nari = "成\n香";
-    else if(name=="桂") nari = "成\n桂";
-    else if(name=="銀") nari = "成\n銀";
+    else if(name=="香") nari = "杏";
+    else if(name=="桂") nari = "圭";
+    else if(name=="銀") nari = "全";
     else nari = name;
     return nari;
   }

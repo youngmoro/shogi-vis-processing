@@ -4,26 +4,22 @@ class PieceData{
   PieceData() {
     for(int i=1; i<=yokoL; i++){
       for(int j=1; j<=tateL; j++){
-          if(j==3) setPiece(i, j, new Piece("歩", 0, 0));
-          else if(j==7) setPiece(i, j, new Piece("歩", 0, 1));
-          else if(i==2 && j==2) setPiece(i, j, new Piece("角", 0, 0));
-          else if(i==8 && j==2) setPiece(i, j, new Piece("飛", 0, 0));
-          else if(i==2 && j==8) setPiece(i, j, new Piece("飛", 0, 1));
-          else if(i==8 && j==8) setPiece(i, j, new Piece("角", 0, 1));
-          else if(j==1){
-            if(i==1 || i==9) setPiece(i, j, new Piece("香", 0, 0));
-            else if(i==2 || i==8) setPiece(i, j, new Piece("桂", 0, 0));
-            else if(i==3 || i==7) setPiece(i, j, new Piece("銀", 0, 0));
-            else if(i==4 || i==6) setPiece(i, j, new Piece("金", 0, 0));
-            else setPiece(i, j, new Piece("玉", 0, 0));
-          }else if(j==9){
-            if(i==1 || i==9) setPiece(i, j, new Piece("香", 0, 1));
-            else if(i==2 || i==8) setPiece(i, j, new Piece("桂", 0, 1));
-            else if(i==3 || i==7) setPiece(i, j, new Piece("銀", 0, 1));
-            else if(i==4 || i==6) setPiece(i, j, new Piece("金", 0, 1));
-            else setPiece(i, j, new Piece("玉", 0, 1));
+          String name = "";
+          int reverse = 0;
+          int player = 0;
+          if(j==3 || j==7) name = "歩";
+          else if((i==2 && j==2) || (i==8 && j==8)) name = "角";
+          else if((i==8 && j==2) || (i==2 && j==8)) name = "飛";
+          else if(j==1 || j==9){
+            if(i==1 || i==9) name = "香";
+            else if(i==2 || i==8) name = "桂";
+            else if(i==3 || i==7) name = "銀";
+            else if(i==4 || i==6) name = "金";
+            else name = "玉";
           }
-          else setPiece(i, j, new Piece("", 0, 0));
+          else name = "";
+          if(j > 5) player = 1;
+          setPiece(i, j, new Piece(name, reverse, player));
       }
     }
   }

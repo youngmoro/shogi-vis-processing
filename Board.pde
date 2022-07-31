@@ -43,13 +43,8 @@ class Board {
   }
   
   void setCustomLayout(int reverse, int player){
-    if(reverse == 1){ 
-      textSize(tateSize/3);
-      fill(255, 105, 180);
-      if(player == 0) translate(0, 20);
-      else translate(0, -20);
-    }
-    if(player == 0){
+    if(reverse == 1) fill(255, 105, 180);
+    if(player == 0) {
       translate(0, 73);
       rotateZ(PI);
     }
