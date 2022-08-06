@@ -1,13 +1,13 @@
 //全てのマスに駒の情報を登録するクラス
-class GameData{
-  Piece[][] table;
-  
-  GameData() {
-    table = new Piece[yokoL][tateL]; //0-8, 0-8
-    initialize();
+class Phase{
+  Piece[] pieces;
+
+  Phase() {
   }
   
   void initialize() {
+    pieces = new Piece[40];
+    int count = 0;
     for(int i=1; i<=yokoL; i++){
       for(int j=1; j<=tateL; j++){
           String name;
@@ -25,15 +25,22 @@ class GameData{
           }
           else name = "";
           if(j > 5) player = 1;
-          setPiece(i, j, new Piece(name, reverse, player));
+          if(name!="") {
+            setPiece(new Piece(name, reverse, player, i, j), count);
+            count++;
+          }
       }
     }
   }
   
-  void setPiece(int i, int j, Piece piece) {
-    i = 9-i;
-    j = j-1;
+  Piece[] addPhase(Piece[] prevPieces, String curHand) {
+    return pieces;
+  }
+  
+  void setPiece(Piece piece, int index) {
+    piece.yoko = 9-piece.yoko;
+    piece.tate = piece.tate-1;
     if(piece.reverse == 1) piece.name = piece.reverseName(piece.name);
-    table[i][j] = piece;
+    pieces[index] = piece;
   }
 }
