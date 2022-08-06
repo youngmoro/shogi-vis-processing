@@ -33,7 +33,8 @@ class Phase{
     }
   }
   
-  Piece[] addPhase(Piece[] prevPieces, String curHand) {
+  Piece[] addPhase(Piece[] prevPieces, String preHand, String curHand) {
+    println(preHand);
     return pieces;
   }
   

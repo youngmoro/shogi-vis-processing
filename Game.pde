@@ -27,8 +27,8 @@ class Game {
     phase.initialize();
     phaseList.add(phase.pieces); //開始局面
     for(int i = 0; i< ld.handsLength; i++){
-      //一つ前の局面と現在の指手を渡す
-      //gdList.add(phase.addPhase(gdList.get(i), ld.curHandList.get(i));
+      //一つ前の局面と一手前と現在の指手を渡す
+      phaseList.add(phase.addPhase(phaseList.get(i), ld.preHandList.get(i), ld.curHandList.get(i)));
     }
   }
 }
