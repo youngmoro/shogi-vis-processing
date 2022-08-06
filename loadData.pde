@@ -4,26 +4,27 @@ class LoadData{
   String[] kifFile;
   int handsStart;
   int handsLength;
-  ArrayList<String> curHandList = new ArrayList<String>();
-  ArrayList<String> preHandList = new ArrayList<String>();
+  ArrayList<String> curHandsStr = new ArrayList<String>();
+  ArrayList<Integer> preHandsInt = new ArrayList<Integer>();
   
   LoadData() {
     path = "sample.txt";
     kifFile = loadStrings(path);
     loadTxt();
-    handsLength = curHandList.size();
-    println("handsLength:" + handsLength);
+    handsLength = curHandsStr.size();
+    println("手数:" + handsLength);
   }
   
   void loadTxt() {
     for(int i=0; i<kifFile.length; i++) {
       if(kifFile[i].indexOf("手数")!=-1) handsStart=i+1;
     }
-    for(int i=handsStart; i<kifFile.length; i++){
+    for(int i=handsStart; i<kifFile.length; i++) {
       kifFile[i] = formatText(kifFile[i]);
       separate(kifFile[i]);
-      println(curHandList.get(i-handsStart));
     }
+    formatToInt();
+    //curHandsStr例：77桂成　preHandsInt例：31
   }
   
   String formatText(String str) {
@@ -33,13 +34,42 @@ class LoadData{
   }
   
   void separate(String str){
-    if(!str.contains("(")){
-      curHandList.add(str);
-      preHandList.add("99");
+    if(!str.contains("(")) { //持ち駒から指した場合など
+      curHandsStr.add(str);
+      preHandsInt.add(0);
     }else{
       String[] newStr = str.split("\\(");
-      curHandList.add(newStr[0]);
-      preHandList.add(newStr[1].substring(0, newStr[1].length()-1));
+      curHandsStr.add(newStr[0]);
+      String pre = newStr[1].substring(0, newStr[1].length()-1); //()削除
+      preHandsInt.add(Integer.valueOf(pre));
+    }
+  }
+  
+  void formatToInt() {
+    String cur = "";
+    for(int i = 0; i < curHandsStr.size(); i++) {
+      cur = curHandsStr.get(i);
+      if(i>0 && cur.contains("同")) {
+        //同を一個前の手に置き換え
+        for(int j = 1; j<curHandsStr.size(); j++){
+          if(curHandsStr.get(i-j).contains("同") != true){
+            cur = cur.replace("同", curHandsStr.get(i-j).substring(0, curHandsStr.get(i-j).length()-1));
+            break;
+          }
+        }
+      }
+      cur = cur.replace("　", "");
+      cur = cur.replace("打", "");
+      cur = cur.replace("一", "1");
+      cur = cur.replace("二", "2");
+      cur = cur.replace("三", "3");
+      cur = cur.replace("四", "4");
+      cur = cur.replace("五", "5");
+      cur = cur.replace("六", "6");
+      cur = cur.replace("七", "7");
+      cur = cur.replace("八", "8");
+      cur = cur.replace("九", "9");
+      curHandsStr.set(i, cur);
     }
   }
 }
