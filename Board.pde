@@ -30,6 +30,7 @@ class Board {
         rect(i * yokoSize, j * tateSize, yokoSize, tateSize);
       }
     }
+    //TODO: 持ち駒エリアをついか
   }
   
   void drawPieces(Piece[] data) {

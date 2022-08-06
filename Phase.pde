@@ -34,7 +34,8 @@ class Phase{
   }
   
   Piece[] addPhase(Piece[] prevPieces, int preHand, String curHand) {
-    //println(preHand);
+    //TODO: curHandの駒name+preHandに一致するものをprevPiecesから取得
+    //TODO: preHand->curHandに書き換え
     return pieces;
   }
   
