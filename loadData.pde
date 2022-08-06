@@ -34,10 +34,11 @@ class LoadData{
   }
   
   void separate(String str){
-    if(!str.contains("(")) { //持ち駒から指した場合など
+    if(str.contains("投了")){
+    }else if(!str.contains("(")) { //持ち駒から指した場合など
       curHandsStr.add(str);
       preHandsInt.add(0);
-    }else{
+    }else {
       String[] newStr = str.split("\\(");
       curHandsStr.add(newStr[0]);
       String pre = newStr[1].substring(0, newStr[1].length()-1); //()削除
@@ -52,24 +53,24 @@ class LoadData{
       if(i>0 && cur.contains("同")) {
         //同を一個前の手に置き換え
         for(int j = 1; j<curHandsStr.size(); j++){
-          if(curHandsStr.get(i-j).contains("同") != true){
+          if(!curHandsStr.get(i-j).contains("同")){
             cur = cur.replace("同", curHandsStr.get(i-j).substring(0, curHandsStr.get(i-j).length()-1));
             break;
           }
         }
       }
-      cur = cur.replace("　", "");
-      cur = cur.replace("打", "");
-      cur = cur.replace("一", "1");
-      cur = cur.replace("二", "2");
-      cur = cur.replace("三", "3");
-      cur = cur.replace("四", "4");
-      cur = cur.replace("五", "5");
-      cur = cur.replace("六", "6");
-      cur = cur.replace("七", "7");
-      cur = cur.replace("八", "8");
-      cur = cur.replace("九", "9");
+      cur = cur.replace("　", "").replace("打", "");
+      cur = cur.replace("一", "1").replace("１", "1");
+      cur = cur.replace("二", "2").replace("２", "2");
+      cur = cur.replace("三", "3").replace("３", "3");
+      cur = cur.replace("四", "4").replace("４", "4");
+      cur = cur.replace("五", "5").replace("５", "5");
+      cur = cur.replace("六", "6").replace("６", "6");
+      cur = cur.replace("七", "7").replace("７", "7");
+      cur = cur.replace("八", "8").replace("８", "8");
+      cur = cur.replace("九", "9").replace("９", "9");
       curHandsStr.set(i, cur);
+      println(cur);
     }
   }
 }
