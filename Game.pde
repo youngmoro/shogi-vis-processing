@@ -18,7 +18,7 @@ class Game {
   void draw() {
     push();
       translate(-800 + board.yokoSize*-9/2, board.tateSize*-9/2, 1000);
-      for(int i = 0; i < ld.handsLength; i++){
+      for(int i = 0; i < ld.handsLength+1; i++){
         push();
           if(i == browseHand){
             translate(1600, 0);

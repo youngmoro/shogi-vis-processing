@@ -1,9 +1,9 @@
 void keyPressed() {
-  if(key == CODED) {      // コード化されているキーが押された
-    if(keyCode == RIGHT) {    // キーコードを判定
-      browseHand += 1;
+  if(key == CODED) {
+    if(keyCode == RIGHT) {
+      if(browseHand < game.ld.handsLength) browseHand += 1;
     }else if (keyCode == LEFT) {
-      browseHand -= 1;
+      if(browseHand > 0) browseHand -= 1;
     }
   }
 }

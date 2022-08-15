@@ -7,12 +7,12 @@ void setupGui(){
   gui = new ControlP5(this);
   gui.setAutoDraw(false);
 
-  handSlider = gui.addSlider("hand")
-    .setLabel("browseHand")
-    .setRange(0, game.ld.handsLength-1)
-    .setValue( browseHand)
+  handSlider = gui.addSlider("browseHand")
+    .setLabel("hand")
+    .setRange(0, game.ld.handsLength)
+    //.setValue(0)
     .setPosition(10, 30)
-    .setSize(120, 30);
+    .setSize(game.ld.handsLength, 30);
 }
 
 void drawGui(boolean isShowGui) {
@@ -20,7 +20,7 @@ void drawGui(boolean isShowGui) {
   stroke(255);
   fill(255);
   if (isShowGui) {
-    handSlider.setValue( browseHand);
+    handSlider.setValue(browseHand);
     gui.draw();
   }
   cam.endHUD();
