@@ -39,6 +39,7 @@ class Board {
   void drawPieces(Piece[] data) {
      for(int i = 0; i< data.length; i++){
        push();
+         textSize(tateSize/2);
          setTextLayout(data[i].yoko, data[i].tate);
          setIrregularLayout(data[i].reverse, data[i].player);
          text(data[i].name, 0, 0);

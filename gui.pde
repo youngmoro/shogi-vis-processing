@@ -1,5 +1,4 @@
 // slider: 右上に並べる
-
 ControlP5 gui;
 Slider handSlider; 
 
@@ -7,10 +6,10 @@ void setupGui(){
   gui = new ControlP5(this);
   gui.setAutoDraw(false);
 
-  handSlider = gui.addSlider("browseHand")
+  handSlider = gui.addSlider("browseH")
     .setLabel("hand")
     .setRange(0, game.ld.handsLength)
-    //.setValue(0)
+    .setValue(0)
     .setPosition(10, 30)
     .setSize(game.ld.handsLength, 30);
 }

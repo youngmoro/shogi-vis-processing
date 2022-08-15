@@ -22,6 +22,7 @@ class Game {
         push();
           if(i == browseHand){
             translate(1600, 0);
+            text(browseHand + "手目", 0, -100);
             board.draw(phaseList.get(i));
           }
         pop();
