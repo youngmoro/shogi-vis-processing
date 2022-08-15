@@ -17,10 +17,18 @@ class Game {
   
   void draw() {
     push();
-      translate(board.yokoSize*-9/2, board.tateSize*-9/2, 1000);
+      translate(-600 + board.yokoSize*-9/2, board.tateSize*-9/2, 1000);
       for(int i = 0; i < ld.handsLength; i++){
-        translate(0, 0, -100);
-        board.draw(phaseList.get(i));
+        push();
+          if(i == hand.getValue()){
+            translate(1600, 0);
+            board.draw(phaseList.get(i));
+          }
+        pop();
+        push();
+          translate(0, 0, -100*i);
+          board.draw(phaseList.get(i));
+        pop();
       }
     pop();
   }

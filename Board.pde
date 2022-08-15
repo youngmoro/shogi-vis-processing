@@ -32,8 +32,8 @@ class Board {
         rect(i * yokoSize, j * tateSize, yokoSize, tateSize);
       }
     }
-    //rect(-capturedAreaSize, 0, capturedAreaSize, capturedAreaSize);
-    //rect(yokoSize*9, tateSize*9-capturedAreaSize, capturedAreaSize, capturedAreaSize);
+    rect(-capturedAreaSize, 0, capturedAreaSize, capturedAreaSize);
+    rect(yokoSize*9, tateSize*9-capturedAreaSize, capturedAreaSize, capturedAreaSize);
   }
   
   void drawPieces(Piece[] data) {

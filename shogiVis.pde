@@ -1,4 +1,5 @@
 import peasy.*;
+import controlP5.*;  
 PeasyCam cam;
 Game game;
 final int yokoL = 9;
@@ -8,12 +9,14 @@ void setup() {
   size(800, 800, P3D);
   setCam();
   game = new Game();
+  setupGui();
 }
 
 void draw() {
   background(0);
   lights();
   game.draw();
+  drawGui(true);
 }
 
 void setCam() {
