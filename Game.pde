@@ -17,10 +17,10 @@ class Game {
   
   void draw() {
     push();
-      translate(-600 + board.yokoSize*-9/2, board.tateSize*-9/2, 1000);
+      translate(-800 + board.yokoSize*-9/2, board.tateSize*-9/2, 1000);
       for(int i = 0; i < ld.handsLength; i++){
         push();
-          if(i == hand.getValue()){
+          if(i == browseHand){
             translate(1600, 0);
             board.draw(phaseList.get(i));
           }
@@ -37,7 +37,7 @@ class Game {
     phaseList.add(phase.pieces); //開始局面
     for(int i = 0; i< ld.handsLength; i++){
       //局面と次の一手を渡す
-      phaseList.add(phase.createPhase(phaseList.get(i), ld.preHandsInt.get(i), ld.curHandsStr.get(i)));
+      phaseList.add(phase.createPhase(phaseList.get(i), ld.preHandsInt.get(i), ld.curHandsStr.get(i), i));
     }
   }
 }

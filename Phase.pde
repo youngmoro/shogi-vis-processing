@@ -32,13 +32,18 @@ class Phase{
     }
   }
   
-  Piece[] createPhase(Piece[] prevPieces, int preHand, String curHand) {
+  Piece[] createPhase(Piece[] prevPieces, int preHand, String curHand, int hand) {
     int preYoko = preHand/10;
     int preTate = preHand%10;
     char curYokoChar = curHand.charAt(0);
     char curTateChar = curHand.charAt(1);
+    char curName = curHand.charAt(2);
+    int curReverse = curHand.length()>3? 1 : 0;
+    int curPlayer = hand%2==0? 1 : 0;
     int curYoko = Character.getNumericValue(curYokoChar);
     int curTate = Character.getNumericValue(curTateChar);
+    
+    
     Piece[] curPieces = new Piece[numOfPiece];
     for(int i = 0; i < numOfPiece; i++) {
       
@@ -53,6 +58,10 @@ class Phase{
                      
       //置き換え
       if(curPieces[i].yoko == preYoko && curPieces[i].tate == preTate) {
+        curPieces[i].name = String.valueOf(curName);
+        curPieces[i].reverse = curReverse;
+        if(curPieces[i].reverse == 1) curPieces[i].name = curPieces[i].reverseName(curPieces[i].name);
+        curPieces[i].player = curPlayer;
         curPieces[i].yoko = curYoko;
         curPieces[i].tate = curTate;
       }else{

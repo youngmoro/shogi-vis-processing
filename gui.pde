@@ -1,26 +1,28 @@
 // slider: 右上に並べる
 
 ControlP5 gui;
-Slider hand; 
+Slider handSlider; 
 
 void setupGui(){
   gui = new ControlP5(this);
   gui.setAutoDraw(false);
 
-  hand = gui.addSlider("hand")
-    .setLabel("hand")
+  handSlider = gui.addSlider("hand")
+    .setLabel("browseHand")
     .setRange(0, game.ld.handsLength-1)
-    .setValue(0)
+    .setValue( browseHand)
     .setPosition(10, 30)
-    .setSize(120, 30)
-    .setNumberOfTickMarks(game.ld.handsLength);
+    .setSize(120, 30);
 }
 
 void drawGui(boolean isShowGui) {
   cam.beginHUD();
   stroke(255);
   fill(255);
-  if (isShowGui) gui.draw();
+  if (isShowGui) {
+    handSlider.setValue( browseHand);
+    gui.draw();
+  }
   cam.endHUD();
 
   if (gui.isMouseOver() && cam.isActive()) {

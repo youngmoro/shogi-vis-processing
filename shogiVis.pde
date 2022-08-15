@@ -4,6 +4,7 @@ PeasyCam cam;
 Game game;
 final int yokoL = 9;
 final int tateL = 9;
+int browseHand = 0;
 
 void setup() {
   size(800, 800, P3D);
@@ -20,7 +21,7 @@ void draw() {
 }
 
 void setCam() {
-  cam = new PeasyCam(this, 3000);
+  cam = new PeasyCam(this, 4000);
   cam.setMinimumDistance(-10000);
   cam.setMaximumDistance(10000);
 }
