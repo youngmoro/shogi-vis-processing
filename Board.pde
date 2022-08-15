@@ -2,6 +2,7 @@
 class Board {
   int tateSize;
   int yokoSize;
+  int capturedAreaSize;
   int rRed;
   int rGreen;
   int rBlue;
@@ -10,6 +11,7 @@ class Board {
   Board() {
     tateSize = 150;
     yokoSize = 122;
+    capturedAreaSize = 300;
     rRed = 255;
     rGreen = 105;
     rBlue = 180;
@@ -30,7 +32,8 @@ class Board {
         rect(i * yokoSize, j * tateSize, yokoSize, tateSize);
       }
     }
-    //TODO: 持ち駒エリアをついか
+    rect(-capturedAreaSize, 0, capturedAreaSize, capturedAreaSize);
+    rect(yokoSize*9, tateSize*9-capturedAreaSize, capturedAreaSize, capturedAreaSize);
   }
   
   void drawPieces(Piece[] data) {
