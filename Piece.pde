@@ -1,10 +1,10 @@
 //駒の情報をもつクラス
 class Piece {
-  String name;
-  int reverse; //通常0成り1
-  int player; //先手0後手1
-  int yoko; //1-9
-  int tate; //1-9 持ち駒の場合は横縦共に0
+  String name = "";
+  int reverse = 0; //通常0成り1
+  int player = 0; //先手0後手1
+  int yoko = 0; //1-9
+  int tate = 0; //1-9 持ち駒の場合は横縦共に0
   
   Piece(String name, int reverse, int player, int yoko, int tate) {
     this.name = name;

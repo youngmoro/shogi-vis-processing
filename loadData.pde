@@ -23,8 +23,7 @@ class LoadData{
       kifFile[i] = formatText(kifFile[i]);
       separate(kifFile[i]);
     }
-    formatToInt();
-    //curHandsStr例：77桂成　preHandsInt例：31
+    formatToInt(); //curHandsStr例：77桂成　preHandsInt例：31
   }
   
   String formatText(String str) {
@@ -70,7 +69,7 @@ class LoadData{
       cur = cur.replace("八", "8").replace("８", "8");
       cur = cur.replace("九", "9").replace("９", "9");
       curHandsStr.set(i, cur);
-      println(cur);
+      //println(cur);
     }
   }
 }

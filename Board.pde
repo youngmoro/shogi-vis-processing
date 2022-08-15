@@ -32,8 +32,8 @@ class Board {
         rect(i * yokoSize, j * tateSize, yokoSize, tateSize);
       }
     }
-    rect(-capturedAreaSize, 0, capturedAreaSize, capturedAreaSize);
-    rect(yokoSize*9, tateSize*9-capturedAreaSize, capturedAreaSize, capturedAreaSize);
+    //rect(-capturedAreaSize, 0, capturedAreaSize, capturedAreaSize);
+    //rect(yokoSize*9, tateSize*9-capturedAreaSize, capturedAreaSize, capturedAreaSize);
   }
   
   void drawPieces(Piece[] data) {
@@ -51,8 +51,9 @@ class Board {
     textAlign(CENTER,TOP);
     float textHeight = textAscent() + textDescent();
     int textPosY = int(tateSize-textHeight)/2;
-    translate(yoko * yokoSize + yokoSize/2, tate * tateSize + textPosY, 1);
-    translate(0, 0, 1);
+    //将棋盤とprocessingは左右逆なので
+    translate((10-yoko) * yokoSize + yokoSize/2, tate * tateSize + textPosY, 1);
+    translate(-yokoSize, -tateSize, 1);
   }
   
   void setIrregularLayout(int reverse, int player){

@@ -1,12 +1,11 @@
 //全てのマスに駒の情報を登録するクラス
 class Phase{
   Piece[] pieces;
+  int numOfPiece;
 
   Phase() {
-  }
-  
-  void initialize() {
-    pieces = new Piece[40];
+    numOfPiece = 40;
+    pieces = new Piece[numOfPiece];
     int count = 0;
     for(int i=1; i<=yokoL; i++){
       for(int j=1; j<=tateL; j++){
@@ -33,15 +32,35 @@ class Phase{
     }
   }
   
-  Piece[] addPhase(Piece[] prevPieces, int preHand, String curHand) {
+  Piece[] createPhase(Piece[] prevPieces, int preHand, String curHand) {
     //TODO: curHandの駒name+preHandに一致するものをprevPiecesから取得
     //TODO: preHand->curHandに書き換え
-    return pieces;
+    int preYoko = preHand/10;
+    int preTate = preHand%10;
+    char curYokoChar = curHand.charAt(0);
+    char curTateChar = curHand.charAt(1);
+    int curYoko = Character.getNumericValue(curYokoChar);
+    int curTate = Character.getNumericValue(curTateChar);
+    Piece[] curPieces = new Piece[numOfPiece];
+    for(int i = 0; i < numOfPiece; i++) {
+      //deep copy
+      curPieces[i] = new Piece(
+                      prevPieces[i].name,
+                      prevPieces[i].reverse,
+                      prevPieces[i].player,
+                      prevPieces[i].yoko,
+                      prevPieces[i].tate
+                     );
+      if(curPieces[i].yoko == preYoko && curPieces[i].tate == preTate) {
+        curPieces[i].yoko = curYoko;
+        curPieces[i].tate = curTate;
+      }else{
+      }
+    }
+    return curPieces;
   }
   
   void setPiece(Piece piece, int index) {
-    piece.yoko = 9-piece.yoko;
-    piece.tate = piece.tate-1;
     if(piece.reverse == 1) piece.name = piece.reverseName(piece.name);
     pieces[index] = piece;
   }
