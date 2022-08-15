@@ -33,8 +33,6 @@ class Phase{
   }
   
   Piece[] createPhase(Piece[] prevPieces, int preHand, String curHand) {
-    //TODO: curHandの駒name+preHandに一致するものをprevPiecesから取得
-    //TODO: preHand->curHandに書き換え
     int preYoko = preHand/10;
     int preTate = preHand%10;
     char curYokoChar = curHand.charAt(0);
@@ -43,6 +41,7 @@ class Phase{
     int curTate = Character.getNumericValue(curTateChar);
     Piece[] curPieces = new Piece[numOfPiece];
     for(int i = 0; i < numOfPiece; i++) {
+      
       //deep copy
       curPieces[i] = new Piece(
                       prevPieces[i].name,
@@ -51,6 +50,8 @@ class Phase{
                       prevPieces[i].yoko,
                       prevPieces[i].tate
                      );
+                     
+      //置き換え
       if(curPieces[i].yoko == preYoko && curPieces[i].tate == preTate) {
         curPieces[i].yoko = curYoko;
         curPieces[i].tate = curTate;
