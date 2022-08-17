@@ -1,11 +1,11 @@
 //全てのマスに駒の情報を登録するクラス
 class Phase{
   Piece[] pieces;
-  int numOfPiece;
+  int pieceNum;
 
   Phase() {
-    numOfPiece = 40;
-    pieces = new Piece[numOfPiece];
+    pieceNum = 40;
+    pieces = new Piece[pieceNum];
     int count = 0;
     for(int i=1; i<=yokoL; i++){
       for(int j=1; j<=tateL; j++){
@@ -42,8 +42,8 @@ class Phase{
     int curPlayer = hand%2==0? 0 : 1;
     int curYoko = Character.getNumericValue(curYokoChar);
     int curTate = Character.getNumericValue(curTateChar);
-    Piece[] curPieces = new Piece[numOfPiece];
-    for(int i = 0; i < numOfPiece; i++) {
+    Piece[] curPieces = new Piece[pieceNum];
+    for(int i = 0; i < pieceNum; i++) {
       //deep copy
       curPieces[i] = new Piece(
                       prevPieces[i].name,

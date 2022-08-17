@@ -22,7 +22,8 @@ class Board {
   void draw(Piece[] data) {
     push();
       drawSquares();
-      drawPieces(data);
+      drawPieces(data
+      );
     pop();
   }
   
@@ -62,6 +63,7 @@ class Board {
         rotateZ(PI);
       }
     }else {
+
       //持ち駒エリア
       if(player == 0) {
         translate(1200, 1100, 1);
