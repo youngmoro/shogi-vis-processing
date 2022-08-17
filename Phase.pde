@@ -68,6 +68,7 @@ class Phase{
         curPieces[i].tate = curTate;
       }else if(curPieces[i].yoko == curYoko && curPieces[i].tate == curTate){ //取られた駒
         curPieces[i].player = curPlayer;
+        curPieces[i].name = curPieces[i].unReverseName(curPieces[i].name);
         curPieces[i].reverse = 0;
         curPieces[i].yoko = 0;
         curPieces[i].tate = 0;

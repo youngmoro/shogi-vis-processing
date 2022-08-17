@@ -7,7 +7,9 @@ class Board {
   int rGreen;
   int rBlue;
   PFont font;
-
+  int firstCapturedNum;
+  int secondCapturedNum;
+  
   Board() {
     tateSize = 150;
     yokoSize = 122;
@@ -22,8 +24,7 @@ class Board {
   void draw(Piece[] data) {
     push();
       drawSquares();
-      drawPieces(data
-      );
+      drawPieces(data);
     pop();
   }
   
@@ -40,40 +41,73 @@ class Board {
   }
   
   void drawPieces(Piece[] data) {
+     fill(255);
+     textAlign(CENTER,TOP);
+     textSize(tateSize/2);
+     firstCapturedNum = 0;
+     secondCapturedNum = 0;
      for(int i = 0; i< data.length; i++){
        push();
-         textSize(tateSize/2);
-         setTextLayout(data[i].yoko, data[i].tate, data[i].reverse, data[i].player);
-         text(data[i].name, 0, 0);
+         if(data[i].yoko != 0 && data[i].tate != 0) ;
+         else {
+           if(data[i].player==0) firstCapturedNum++;
+           else secondCapturedNum++;
+           setCapturedTextLayout(data[i]);
+         }
        pop();
      }
   }
   
-  void setTextLayout(int yoko, int tate, int reverse, int player) {
-    fill(255);
-    textAlign(CENTER,TOP);
+  void setTextLayout(Piece data) {
     float textHeight = textAscent() + textDescent();
     int textPosY = int(tateSize-textHeight)/2;
     //将棋盤に合わせるため左右反転
-    if(yoko != 0 && tate != 0) {
-      translate((10-yoko) * yokoSize + yokoSize/2, tate * tateSize + textPosY, 1);
+      translate((10-data.yoko) * yokoSize + yokoSize/2, data.tate * tateSize + textPosY, 1);
       translate(-yokoSize, -tateSize, 1);
-      if(player == 1) {
+      if(data.player == 1) {
         translate(0, 73);
         rotateZ(PI);
       }
-    }else {
-
-      //持ち駒エリア
-      if(player == 0) {
-        translate(1200, 1100, 1);
+      if(data.reverse == 1) fill(rRed, rGreen, rBlue);
+      text(data.name, 0, 0);
+   }
+   
+   void setCapturedTextLayout(Piece data) {
+      //将棋盤に合わせるため左右反転
+      int tmpx = 0;
+      int tmpy = 0;
+      if(data.player == 0) {
+        for (int i=0; i<firstCapturedNum; i++){
+          //if(i>5) {
+          //  tmpx = i-5;
+          //  tmpy = 2;
+          //}else if(i>2) {
+          //  tmpx = i-2;
+          //  tmpy = 1;
+          //}else {
+          //  tmpx = i;
+          //  tmpy = 0;
+          //}
+          translate(1200 + tmpx*100, 1100 + tmpy*50, 1);
+          text(data.name, 0, 0);
+        }
       }else {
-        translate(-100, 200, 1);
-        translate(0, 73);
-        rotateZ(PI);
+        for (int i=0; i<secondCapturedNum; i++){
+          //if(i>5) {
+          //  tmpx = i-5;
+          //  tmpy = 2;
+          //}else if(i>2) {
+          //  tmpx = i-2;
+          //  tmpy = 1;
+          //}else {
+          //  tmpx = i;
+          //  tmpy = 0;
+          //}
+          translate(-100 - tmpx*100, 200 - tmpy*50, 1);
+          translate(0, 73);
+          rotateZ(PI);
+          text(data.name, 0, 0);
+        }
       }
     }
-    if(reverse == 1) fill(rRed, rGreen, rBlue);
-
-  }
 }

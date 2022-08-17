@@ -25,5 +25,5 @@ void draw() {
 void setCam() {
   cam = new PeasyCam(this, 4000);
   cam.setMinimumDistance(-10000);
-  cam.setMaximumDistance(10000);
+  cam.setMaximumDistance(20000);
 }

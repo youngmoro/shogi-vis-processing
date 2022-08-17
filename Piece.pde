@@ -24,6 +24,16 @@ class Piece {
     else return name;
   }
   
+  String unReverseName(String name) {
+    if(name.equals("と")) return "歩";
+    else if(name.equals("馬")) return "角";
+    else if(name.equals("龍")) return "飛";
+    else if(name.equals("杏")) return "香";
+    else if(name.equals("圭")) return "桂";
+    else if(name.equals("全")) return "銀";
+    else return name;
+  }
+  
   boolean isReverse(String name) {
     if (name.equals("と") ||
         name.equals("馬") ||
