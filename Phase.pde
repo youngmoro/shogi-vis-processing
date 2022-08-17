@@ -38,15 +38,13 @@ class Phase{
     char curYokoChar = curHand.charAt(0);
     char curTateChar = curHand.charAt(1);
     char curName = curHand.charAt(2);
-    int curReverse = curHand.length()>3? 1 : 0;
+    int curReverse = (curHand.length()>3)? 1 : 0;
     int curPlayer = hand%2==0? 1 : 0;
     int curYoko = Character.getNumericValue(curYokoChar);
     int curTate = Character.getNumericValue(curTateChar);
     
-    
     Piece[] curPieces = new Piece[numOfPiece];
     for(int i = 0; i < numOfPiece; i++) {
-      
       //deep copy
       curPieces[i] = new Piece(
                       prevPieces[i].name,
@@ -61,6 +59,7 @@ class Phase{
         curPieces[i].name = String.valueOf(curName);
         curPieces[i].reverse = curReverse;
         if(curPieces[i].reverse == 1) curPieces[i].name = curPieces[i].reverseName(curPieces[i].name);
+        else if(curPieces[i].isReverse(curPieces[i].name)) curPieces[i].reverse = 1;
         curPieces[i].player = curPlayer;
         curPieces[i].yoko = curYoko;
         curPieces[i].tate = curTate;

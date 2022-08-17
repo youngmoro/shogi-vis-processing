@@ -51,9 +51,9 @@ class LoadData{
       cur = curHandsStr.get(i);
       if(i>0 && cur.contains("同")) {
         //同を一個前の手に置き換え
-        for(int j = 1; j<curHandsStr.size(); j++){
+        for(int j = 1; j < i; j++){
           if(!curHandsStr.get(i-j).contains("同")){
-            cur = cur.replace("同", curHandsStr.get(i-j).substring(0, curHandsStr.get(i-j).length()-1));
+            cur = cur.replace("同", curHandsStr.get(i-j).substring(0, 2));
             break;
           }
         }

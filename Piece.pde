@@ -15,12 +15,23 @@ class Piece {
   }
   
   String reverseName(String name) {
-    if(name=="歩" || name=="と") return "と";
-    else if(name=="角") return "馬";
-    else if(name=="飛") return "龍";
-    else if(name=="香") return "杏";
-    else if(name=="桂") return "圭";
-    else if(name=="銀") return "全";
+    if(name.equals("歩")) return "と";
+    else if(name.equals("角")) return "馬";
+    else if(name.equals("飛")) return "龍";
+    else if(name.equals("香")) return "杏";
+    else if(name.equals("桂")) return "圭";
+    else if(name.equals("銀")) return "全";
     else return name;
+  }
+  
+  boolean isReverse(String name) {
+    if (name.equals("と") ||
+        name.equals("馬") ||
+        name.equals("龍") ||
+        name.equals("杏") ||
+        name.equals("圭") ||
+        name.equals("全")
+       ) return true;
+     else return false;
   }
 }
