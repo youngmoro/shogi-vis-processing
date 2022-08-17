@@ -43,6 +43,7 @@ class LoadData{
       String pre = newStr[1].substring(0, newStr[1].length()-1); //()削除
       preHandsInt.add(Integer.valueOf(pre));
     }
+
   }
   
   void formatToInt() {
@@ -69,7 +70,8 @@ class LoadData{
       cur = cur.replace("八", "8").replace("８", "8");
       cur = cur.replace("九", "9").replace("９", "9");
       curHandsStr.set(i, cur);
-      println(cur);
+      //println(cur);
+      //println(preHandsInt.get(i));
     }
   }
 }

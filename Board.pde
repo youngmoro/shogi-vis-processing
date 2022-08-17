@@ -20,8 +20,10 @@ class Board {
   }
   
   void draw(Piece[] data) {
-    drawSquares();
-    drawPieces(data);
+    push();
+      drawSquares();
+      drawPieces(data);
+    pop();
   }
   
   void drawSquares() {
@@ -40,28 +42,36 @@ class Board {
      for(int i = 0; i< data.length; i++){
        push();
          textSize(tateSize/2);
-         setTextLayout(data[i].yoko, data[i].tate);
-         setIrregularLayout(data[i].reverse, data[i].player);
+         setTextLayout(data[i].yoko, data[i].tate, data[i].reverse, data[i].player);
          text(data[i].name, 0, 0);
        pop();
      }
   }
   
-  void setTextLayout(int yoko, int tate) {
+  void setTextLayout(int yoko, int tate, int reverse, int player) {
     fill(255);
     textAlign(CENTER,TOP);
     float textHeight = textAscent() + textDescent();
     int textPosY = int(tateSize-textHeight)/2;
-    //将棋盤とprocessingは左右逆なので
-    translate((10-yoko) * yokoSize + yokoSize/2, tate * tateSize + textPosY, 1);
-    translate(-yokoSize, -tateSize, 1);
-  }
-  
-  void setIrregularLayout(int reverse, int player){
-    if(reverse == 1) fill(rRed, rGreen, rBlue);
-    if(player == 0) {
-      translate(0, 73);
-      rotateZ(PI);
+    //将棋盤に合わせるため左右反転
+    if(yoko != 0 && tate != 0) {
+      translate((10-yoko) * yokoSize + yokoSize/2, tate * tateSize + textPosY, 1);
+      translate(-yokoSize, -tateSize, 1);
+      if(player == 1) {
+        translate(0, 73);
+        rotateZ(PI);
+      }
+    }else {
+      //持ち駒エリア
+      if(player == 0) {
+        translate(1200, 1100, 1);
+      }else {
+        translate(-100, 200, 1);
+        translate(0, 73);
+        rotateZ(PI);
+      }
     }
+    if(reverse == 1) fill(rRed, rGreen, rBlue);
+
   }
 }

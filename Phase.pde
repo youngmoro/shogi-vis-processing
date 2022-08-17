@@ -11,7 +11,7 @@ class Phase{
       for(int j=1; j<=tateL; j++){
           String name;
           int reverse = 0;
-          int player = 0;
+          int player = 1;
           if(j==3 || j==7) name = "歩";
           else if((i==2 && j==2) || (i==8 && j==8)) name = "角";
           else if((i==8 && j==2) || (i==2 && j==8)) name = "飛";
@@ -23,7 +23,7 @@ class Phase{
             else name = "玉";
           }
           else name = "";
-          if(j > 5) player = 1;
+          if(j > 5) player = 0;
           if(name!="") {
             setPiece(new Piece(name, reverse, player, i, j), count);
             count++;
@@ -39,10 +39,9 @@ class Phase{
     char curTateChar = curHand.charAt(1);
     char curName = curHand.charAt(2);
     int curReverse = (curHand.length()>3)? 1 : 0;
-    int curPlayer = hand%2==0? 1 : 0;
+    int curPlayer = hand%2==0? 0 : 1;
     int curYoko = Character.getNumericValue(curYokoChar);
     int curTate = Character.getNumericValue(curTateChar);
-    
     Piece[] curPieces = new Piece[numOfPiece];
     for(int i = 0; i < numOfPiece; i++) {
       //deep copy
@@ -53,17 +52,20 @@ class Phase{
                       prevPieces[i].yoko,
                       prevPieces[i].tate
                      );
-                     
       //置き換え
       if(curPieces[i].yoko == preYoko && curPieces[i].tate == preTate) {
-        curPieces[i].name = String.valueOf(curName);
-        curPieces[i].reverse = curReverse;
-        if(curPieces[i].reverse == 1) curPieces[i].name = curPieces[i].reverseName(curPieces[i].name);
-        else if(curPieces[i].isReverse(curPieces[i].name)) curPieces[i].reverse = 1;
-        curPieces[i].player = curPlayer;
-        curPieces[i].yoko = curYoko;
-        curPieces[i].tate = curTate;
-      }else{
+          curPieces[i].name = String.valueOf(curName);
+          curPieces[i].reverse = curReverse;
+          if(curPieces[i].reverse == 1) curPieces[i].name = curPieces[i].reverseName(curPieces[i].name);
+          else if(curPieces[i].isReverse(curPieces[i].name)) curPieces[i].reverse = 1;
+          curPieces[i].player = curPlayer;
+          curPieces[i].yoko = curYoko;
+          curPieces[i].tate = curTate;
+      }else if(curPieces[i].yoko == curYoko && curPieces[i].tate == curTate){ //取られた駒
+          curPieces[i].player = curPlayer;
+          curPieces[i].reverse = 0;
+          curPieces[i].yoko = 0;
+          curPieces[i].tate = 0;
       }
     }
     return curPieces;
