@@ -52,20 +52,25 @@ class Phase{
                       prevPieces[i].yoko,
                       prevPieces[i].tate
                      );
+    }
+    for(int i = 0; i < pieceNum; i++) {
       //置き換え
-      if(curPieces[i].yoko == preYoko && curPieces[i].tate == preTate) {
-          curPieces[i].name = String.valueOf(curName);
-          curPieces[i].reverse = curReverse;
-          if(curPieces[i].reverse == 1) curPieces[i].name = curPieces[i].reverseName(curPieces[i].name);
-          else if(curPieces[i].isReverse(curPieces[i].name)) curPieces[i].reverse = 1;
-          curPieces[i].player = curPlayer;
-          curPieces[i].yoko = curYoko;
-          curPieces[i].tate = curTate;
+      if(curPieces[i].yoko == preYoko && 
+         curPieces[i].tate == preTate &&
+         curPieces[i].player == curPlayer &&
+         (curPieces[i].name.equals(String.valueOf(curName)) || curPieces[i].reverseName(curPieces[i].name).equals(String.valueOf(curName)))
+      ) {
+        curPieces[i].name = String.valueOf(curName);
+        curPieces[i].reverse = curReverse;
+        if(curPieces[i].reverse == 1) curPieces[i].name = curPieces[i].reverseName(curPieces[i].name);
+        else if(curPieces[i].isReverse(curPieces[i].name)) curPieces[i].reverse = 1;
+        curPieces[i].yoko = curYoko;
+        curPieces[i].tate = curTate;
       }else if(curPieces[i].yoko == curYoko && curPieces[i].tate == curTate){ //取られた駒
-          curPieces[i].player = curPlayer;
-          curPieces[i].reverse = 0;
-          curPieces[i].yoko = 0;
-          curPieces[i].tate = 0;
+        curPieces[i].player = curPlayer;
+        curPieces[i].reverse = 0;
+        curPieces[i].yoko = 0;
+        curPieces[i].tate = 0;
       }
     }
     return curPieces;
