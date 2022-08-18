@@ -54,7 +54,7 @@ class Phase{
                      );
     }
     for(int i = 0; i < pieceNum; i++) {
-      //置き換え
+      //駒の置き換え　動かす前の駒と等しいかチェック
       if(curPieces[i].yoko == preYoko && 
          curPieces[i].tate == preTate &&
          curPieces[i].player == curPlayer &&
@@ -66,12 +66,20 @@ class Phase{
         else if(curPieces[i].isReverse(curPieces[i].name)) curPieces[i].reverse = 1;
         curPieces[i].yoko = curYoko;
         curPieces[i].tate = curTate;
-      }else if(curPieces[i].yoko == curYoko && curPieces[i].tate == curTate){ //取られた駒
+      //取られた駒
+      }else if(curPieces[i].yoko == curYoko && curPieces[i].tate == curTate) {
         curPieces[i].player = curPlayer;
         curPieces[i].name = curPieces[i].unReverseName(curPieces[i].name);
         curPieces[i].reverse = 0;
         curPieces[i].yoko = 0;
         curPieces[i].tate = 0;
+      }
+      if(curPieces[i].name.equals("香") || curPieces[i].name.equals("杏")) {
+        //print(curPieces[i].yoko == preYoko);
+        //print(curPieces[i].tate == preTate);
+        //print(String.valueOf(curName));
+        //print(curPieces[i].name.equals(String.valueOf(curName)) || curPieces[i].reverseName(curPieces[i].name).equals(String.valueOf(curName)));
+        //println(curPieces[i].player == curPlayer);
       }
     }
     return curPieces;
