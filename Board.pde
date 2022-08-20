@@ -23,7 +23,6 @@ class Board {
     push();
       fill(0, 0, 0, alpha);
       stroke(255, 255, 255, alpha);
-      //noFill();
       drawSquares();
       fill(255);
       drawPieces(data);

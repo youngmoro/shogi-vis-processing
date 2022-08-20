@@ -16,10 +16,12 @@ void setup() {
 }
 
 void draw() {
+  hint(ENABLE_DEPTH_SORT);
   if(keyPressed == false) browseHand = Math.round(handSlider.getValue());
   background(0);
   lights();
   game.draw();
+  hint(DISABLE_DEPTH_SORT);
   drawGui(true);
 }
 
