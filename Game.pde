@@ -38,7 +38,6 @@ class Game {
     phaseList.add(phase.pieces); //開始局面
     for(int i = 0; i< ld.handsLength; i++){
       //局面と次の一手を渡す
-      println("手:"+i);
       phaseList.add(phase.createPhase(phaseList.get(i), ld.preHandsInt.get(i), ld.curHandsStr.get(i), i));
     }
   }

@@ -42,6 +42,8 @@ class Phase{
     int curPlayer = hand%2==0? 0 : 1;
     int curYoko = Character.getNumericValue(curYokoChar);
     int curTate = Character.getNumericValue(curTateChar);
+    int capturedCount = 0;
+    int replacedCount = 0;
     Piece[] curPieces = new Piece[pieceNum];
     for(int i = 0; i < pieceNum; i++) {
       //deep copy
@@ -52,10 +54,9 @@ class Phase{
                       prevPieces[i].yoko,
                       prevPieces[i].tate
                      );
-    }
-    for(int i = 0; i < pieceNum; i++) {
       //駒の置き換え　動かす前の駒と等しいかチェック
-      if(curPieces[i].yoko == preYoko && 
+      if(replacedCount == 0 &&
+         curPieces[i].yoko == preYoko && 
          curPieces[i].tate == preTate &&
          curPieces[i].player == curPlayer &&
          (curPieces[i].name.equals(String.valueOf(curName)) || curPieces[i].reverseName(curPieces[i].name).equals(String.valueOf(curName)))
@@ -66,24 +67,20 @@ class Phase{
         else if(curPieces[i].isReverse(curPieces[i].name)) curPieces[i].reverse = 1;
         curPieces[i].yoko = curYoko;
         curPieces[i].tate = curTate;
+        replacedCount += 1;
       //取られた駒
-      }else if(curPieces[i].yoko == curYoko && curPieces[i].tate == curTate) {
+      }else if(capturedCount==0 && curPieces[i].yoko == curYoko && curPieces[i].tate == curTate) {
         curPieces[i].player = curPlayer;
         curPieces[i].name = curPieces[i].unReverseName(curPieces[i].name);
         curPieces[i].reverse = 0;
         curPieces[i].yoko = 0;
         curPieces[i].tate = 0;
-      }
-      if(curPieces[i].name.equals("香") || curPieces[i].name.equals("杏")) {
-        //print(curPieces[i].yoko == preYoko);
-        //print(curPieces[i].tate == preTate);
-        //print(String.valueOf(curName));
-        //print(curPieces[i].name.equals(String.valueOf(curName)) || curPieces[i].reverseName(curPieces[i].name).equals(String.valueOf(curName)));
-        //println(curPieces[i].player == curPlayer);
+        capturedCount += 1;
       }
     }
+    capturedCount = 0;
     return curPieces;
-  }
+    }
   
   void setPiece(Piece piece, int index) {
     if(piece.reverse == 1) piece.name = piece.reverseName(piece.name);

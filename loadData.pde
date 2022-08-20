@@ -70,8 +70,8 @@ class LoadData{
       cur = cur.replace("八", "8").replace("８", "8");
       cur = cur.replace("九", "9").replace("９", "9");
       curHandsStr.set(i, cur);
-      print(cur);
-      println("手:"+i);
+      //print(cur);
+      //println("手:"+i);
       //println(preHandsInt.get(i));
     }
   }
