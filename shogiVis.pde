@@ -1,5 +1,6 @@
 import peasy.*;
 import controlP5.*;  
+import processing.opengl.*;
 PeasyCam cam;
 Game game;
 final int yokoL = 9;
@@ -7,7 +8,7 @@ final int tateL = 9;
 int browseHand;
 
 void setup() {
-  size(800, 800, P3D);
+  size(1200, 800, OPENGL);
   setCam();
   game = new Game();
   setupGui();

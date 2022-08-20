@@ -19,16 +19,18 @@ class Board {
     textFont(font);
   }
   
-  void draw(Piece[] data) {
+  void draw(Piece[] data, int alpha) {
     push();
+      fill(0, 0, 0, alpha);
+      stroke(255, 255, 255, alpha);
+      //noFill();
       drawSquares();
+      fill(255);
       drawPieces(data);
     pop();
   }
   
   void drawSquares() {
-    fill(0);
-    stroke(255);
     for(int i = 0; i < yokoL; i++){
       for(int j = 0; j < tateL; j++){
         rect(i * yokoSize, j * tateSize, yokoSize, tateSize);
@@ -39,7 +41,6 @@ class Board {
   }
   
   void drawPieces(Piece[] data) {
-     fill(255);
      textAlign(CENTER,TOP);
      textSize(tateSize/2);
      int firstCapturedNum = 0;

@@ -23,12 +23,15 @@ class Game {
           if(i == browseHand){
             translate(1600, 0);
             text(browseHand + "手目", 100, -100);
-            board.draw(phaseList.get(i));
+            board.draw(phaseList.get(i), 255);
           }
         pop();
         push();
-          translate(0, 0, -100*i + 100*browseHand);
-          board.drawPieces(phaseList.get(i));
+          translate(0, 0, 100*(browseHand-i));
+          int alpha = 50;
+          if(i>browseHand-10 && i<browseHand+10) hint(ENABLE_DEPTH_SORT);
+          else hint(DISABLE_DEPTH_SORT);
+          board.draw(phaseList.get(i), alpha);
         pop();
       }
     pop();
