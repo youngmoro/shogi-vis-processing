@@ -27,7 +27,7 @@ class Game {
           }
         pop();
         push();
-          translate(0, 0, -100*i);
+          translate(0, 0, -100*i + 100*browseHand);
           board.drawPieces(phaseList.get(i));
         pop();
       }
