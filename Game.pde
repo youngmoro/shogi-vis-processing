@@ -30,7 +30,7 @@ class Game {
         push();
           translate(0, 0, 100*(browseHand-i));
           int alpha = 50;
-          board.draw(phaseList.get(i), alpha);
+          if(i>=browseHand)board.draw(phaseList.get(i), alpha);
         pop();
       }
     pop();
