@@ -6,6 +6,8 @@ class Piece {
   int yoko; //1-9
   int tate; //1-9 持ち駒の場合は横縦共に0
   
+  //TODO 指されたコマの色を変える→黄色など
+  
   Piece(String name, int reverse, int player, int yoko, int tate) {
     this.name = name;
     this.reverse = reverse;

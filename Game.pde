@@ -15,24 +15,29 @@ class Game {
     distance = 200;
   }
   
-  void draw() {
-    hint(ENABLE_DEPTH_SORT);
+  void draw3D() {
     push();
-      translate(-800+board.yokoSize*-9/2, -board.tateSize*9/2, 1000);
+      translate(-800+board.yokoSize*-9/2, -board.tateSize*9/2, 2000);
       for(int i = 0; i < ld.handsLength+1; i++){
-        push();
-          if(i == browseHand){
-            translate(1600, 0);
-            text(browseHand + "手目", 100, -100);
-            board.draw(phaseList.get(i), 255);
-          }
-        pop();
         push();
           translate(0, 0, 100*(browseHand-i));
           int alpha = 50;
-          board.draw(phaseList.get(i), alpha);
+          if(i>=browseHand && i<browseHand+20){
+            hint(ENABLE_DEPTH_SORT);
+            board.draw(phaseList.get(i), alpha, i==browseHand);
+          }
+          else hint(DISABLE_DEPTH_SORT);
         pop();
       }
+    pop();
+  }
+  
+  void draw2D() {
+    push();
+      translate(700, 200);
+      scale(0.3);
+      text(browseHand + "手目", 0, -100);
+      board.draw(phaseList.get(browseHand), 255, true);
     pop();
   }
   

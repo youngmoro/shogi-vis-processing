@@ -19,11 +19,17 @@ class Board {
     textFont(font);
   }
   
-  void draw(Piece[] data, int alpha) {
+  void draw(Piece[] data, int alpha, boolean isTop) {
     push();
       fill(0, 0, 0, alpha);
-      stroke(255, 255, 255, alpha);
+      if(isTop==true){
+        stroke(255);
+        strokeWeight(2);
+      }else {
+        stroke(255, 255, 255, alpha);
+      }
       drawSquares();
+      
       fill(255);
       drawPieces(data);
     pop();
