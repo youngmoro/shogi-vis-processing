@@ -16,14 +16,18 @@ class Game {
   }
   
   void draw3D() {
-    hint(ENABLE_DEPTH_SORT);
+    
     push();
       translate(-800+board.yokoSize*-9/2, -board.tateSize*9/2, 1000);
       for(int i = 0; i < ld.handsLength+1; i++){
         push();
           translate(0, 0, 100*(browseHand-i));
           int alpha = 50;
-          if(i>=browseHand)board.draw(phaseList.get(i), alpha);
+          if(i>browseHand-10 && i<browseHand+10){
+            hint(ENABLE_DEPTH_SORT);
+            board.draw(phaseList.get(i), alpha);
+          }
+          else hint(DISABLE_DEPTH_SORT);
         pop();
       }
     pop();
