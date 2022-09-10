@@ -8,7 +8,7 @@ final int tateL = 9;
 int browseHand;
 
 void setup() {
-  size(1200, 800, OPENGL);
+  size(1200, 800, P3D);
   setCam();
   game = new Game();
   setupGui();
@@ -20,7 +20,10 @@ void draw() {
   if(keyPressed == false) browseHand = Math.round(handSlider.getValue());
   background(0);
   lights();
-  game.draw();
+  cam.beginHUD();
+    game.draw2D();
+  cam.endHUD();
+  game.draw3D();
   hint(DISABLE_DEPTH_SORT);
   drawGui(true);
 }
