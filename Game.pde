@@ -37,7 +37,7 @@ class Game {
       translate(700, 200);
       scale(0.3);
       text(browseHand + "手目", 0, -100);
-      board.draw(phaseList.get(browseHand), 255, true);
+      board.draw(phaseList.get(browseHand), 0, true);
     pop();
   }
   
