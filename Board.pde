@@ -25,10 +25,11 @@ class Board {
       if(isTop==true){
         stroke(255);
         strokeWeight(2);
+        drawSquares();
       }else {
         stroke(255, 255, 255, alpha);
       }
-      drawSquares();
+      //drawSquares();
       
       fill(255);
       drawPieces(data);

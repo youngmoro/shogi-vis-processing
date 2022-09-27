@@ -21,8 +21,8 @@ class Game {
       for(int i = 0; i < ld.handsLength+1; i++){
         push();
           translate(0, 0, 50*(browseHand-i));
-          int alpha = 50;
-          if(i>browseHand+30) hint(DISABLE_DEPTH_SORT);
+          int alpha = 100;
+          //if(i>browseHand+30) hint(DISABLE_DEPTH_SORT);
           if(i>=browseHand){
             board.draw(phaseList.get(i), alpha, i==browseHand);
           }
