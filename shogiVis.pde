@@ -9,7 +9,7 @@ int browseHand;
 
 void setup() {
   frameRate(30);
-  size(1200, 800, P3D);
+  size(1200, 800, OPENGL);
   setCam();
   game = new Game();
   setupGui();
@@ -30,7 +30,7 @@ void draw() {
 }
 
 void setCam() {
-  cam = new PeasyCam(this, 4000);
-  cam.setMinimumDistance(-10000);
-  cam.setMaximumDistance(20000);
+  cam = new PeasyCam(this, 2000);
+  cam.setMinimumDistance(0);
+  cam.setMaximumDistance(2000);
 }
