@@ -20,13 +20,12 @@ class Game {
       translate(-800+board.yokoSize*-9/2, -board.tateSize*9/2, 2000);
       for(int i = 0; i < ld.handsLength+1; i++){
         push();
-          translate(0, 0, 100*(browseHand-i));
+          translate(0, 0, 50*(browseHand-i));
           int alpha = 50;
-          if(i>=browseHand && i<browseHand+20){
-            hint(ENABLE_DEPTH_SORT);
+          //if(i>=browseHand && i<browseHand+20){
+          if(i>=browseHand){
             board.draw(phaseList.get(i), alpha, i==browseHand);
           }
-          else hint(DISABLE_DEPTH_SORT);
         pop();
       }
     pop();
