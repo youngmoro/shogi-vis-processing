@@ -20,12 +20,12 @@ void draw() {
   if(keyPressed == false) browseHand = Math.round(handSlider.getValue());
   background(0);
   lights();
-  cam.beginHUD();
-    game.draw2D();
-  cam.endHUD();
   hint(ENABLE_DEPTH_SORT);
   game.draw3D();
   hint(DISABLE_DEPTH_SORT);
+  cam.beginHUD();
+    game.draw2D();
+  cam.endHUD();
   drawGui(true);
 }
 
