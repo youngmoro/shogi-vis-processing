@@ -17,10 +17,10 @@ class Game {
   
   void draw3D() {
     push();
-      translate(-800+board.yokoSize*-9/2, -board.tateSize*9/2);
+      translate(-300+board.yokoSize*-9/2, 50-board.tateSize*9/2);
       for(int i = 0; i < ld.handsLength+1; i++){
         push();
-          translate(0, 0, 50*(browseHand-i));
+          translate(0, 0, 500 + 50*(browseHand-i));
           int alpha = 100;
           //if(i>browseHand+30) hint(DISABLE_DEPTH_SORT);
           if(i>=browseHand){
@@ -33,8 +33,8 @@ class Game {
   
   void draw2D() {
     push();
-      translate(700, 200);
-      scale(0.3);
+      translate(1000, 100);
+      scale(0.25);
       text(browseHand + "手目", 0, -100);
       board.draw(phaseList.get(browseHand), 0, true);
     pop();

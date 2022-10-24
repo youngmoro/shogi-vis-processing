@@ -9,7 +9,8 @@ int browseHand;
 
 void setup() {
   frameRate(30);
-  size(1200, 800, OPENGL);
+  fullScreen(OPENGL);
+  //size(1200, 1000, OPENGL);
   setCam();
   game = new Game();
   setupGui();
