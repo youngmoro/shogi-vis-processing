@@ -1,4 +1,4 @@
-//Boadsに全てのPhaseのデータを渡すクラス
+//Boardsに全てのPhaseのデータを渡すクラス
 class Game {
   Board board;
   ArrayList<Piece[]> phaseList;
